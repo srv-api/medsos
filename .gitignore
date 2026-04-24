@@ -1,0 +1,7 @@
+.env
+.env-staging
+.env-prod
+docker-compose-prod.yml
+docker-compose.yml
+main.go
+main-prod.go
