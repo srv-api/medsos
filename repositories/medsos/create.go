@@ -1,10 +1,6 @@
 package medsos
 
 import (
-	"crypto/rand"
-	"fmt"
-	"strconv"
-
 	dto "srv-api/medsos/dto"
 	"srv-api/medsos/entity"
 )
