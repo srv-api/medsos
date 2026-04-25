@@ -7,8 +7,6 @@ import (
 )
 
 func (r *medsosRepository) Create(req dto.MedsosRequest) (dto.MedsosResponse, error) {
-
-	// Create the new medsos entry
 	create := entity.Medsos{
 		ID:        req.ID,
 		UserID:    req.UserID,
@@ -16,10 +14,10 @@ func (r *medsosRepository) Create(req dto.MedsosRequest) (dto.MedsosResponse, er
 		Status:    req.Status,
 		DetailID:  req.DetailID,
 		CreatedBy: req.CreatedBy,
+		ImageURL:  req.ImageURL, // Menambahkan ImageURL
 	}
 
-	// Save the new user to the database
-	if err := r.DB.Save(&create).Error; err != nil {
+	if err := r.DB.Create(&create).Error; err != nil { // Gunakan Create bukan Save
 		return dto.MedsosResponse{}, err
 	}
 
@@ -28,7 +26,6 @@ func (r *medsosRepository) Create(req dto.MedsosRequest) (dto.MedsosResponse, er
 		2: "inactive",
 	}
 
-	// Dapatkan string status berdasarkan nilai integer
 	statusString, ok := statusMap[create.Status]
 	if !ok {
 		return dto.MedsosResponse{}, fmt.Errorf("invalid status value in database")
@@ -41,6 +38,7 @@ func (r *medsosRepository) Create(req dto.MedsosRequest) (dto.MedsosResponse, er
 		Status:    statusString,
 		DetailID:  create.DetailID,
 		CreatedBy: create.CreatedBy,
+		ImageURL:  create.ImageURL,
 	}
 
 	return response, nil

@@ -7,4 +7,5 @@ type Medsos struct {
 	Status    int    `gorm:"type:int;not null"`
 	DetailID  string `gorm:"type:varchar(100);not null"`
 	CreatedBy string `gorm:"type:varchar(100);not null"`
+	ImageURL  string `gorm:"type:varchar(500)"`
 }

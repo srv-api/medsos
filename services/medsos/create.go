@@ -18,6 +18,7 @@ func (s *medsosService) Create(req dto.MedsosRequest) (dto.MedsosResponse, error
 		UserID:    req.UserID,
 		DetailID:  req.DetailID,
 		CreatedBy: req.CreatedBy,
+		ImageURL:  req.ImageURL,
 	}
 
 	created, err := s.Repo.Create(create)
