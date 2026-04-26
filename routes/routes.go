@@ -30,6 +30,8 @@ func New() *echo.Echo {
 	medsos := e.Group("/medsos", middlewares.AuthorizeJWT(JWT))
 	{
 		medsos.POST("/create", handler.Create)
+		medsos.GET("/get", handler.Get)
+
 	}
 
 	return e

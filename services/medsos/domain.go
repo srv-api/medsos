@@ -3,13 +3,14 @@ package medsos
 import (
 	dto "srv-api/medsos/dto"
 
-	m "github.com/srv-api/middlewares/middlewares"
-
 	r "srv-api/medsos/repositories/medsos"
+
+	m "github.com/srv-api/middlewares/middlewares"
 )
 
 type MedsosService interface {
 	Create(req dto.MedsosRequest) (dto.MedsosResponse, error)
+	Get(req dto.MedsosRequest) ([]dto.MedsosResponse, error)
 }
 
 type medsosService struct {
