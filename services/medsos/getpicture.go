@@ -15,7 +15,7 @@ func (b *medsosService) GetPicture(req dto.MedsosRequest) (*dto.MedsosResponse, 
 	}
 
 	// Pastikan path file benar
-	filePath := transaction.ImageURL // Tambahkan prefix untuk path lokal
+	filePath := "./" + transaction.ImageURL // Tambahkan prefix untuk path lokal
 	if _, err := os.Stat(filePath); os.IsNotExist(err) {
 		return nil, fmt.Errorf("file not found")
 	}
