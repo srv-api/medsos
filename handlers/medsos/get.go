@@ -11,7 +11,7 @@ func (h *domainHandler) Get(c echo.Context) error {
 	if err := c.Bind(&req); err != nil {
 		return echo.NewHTTPError(400, "Invalid request")
 	}
-	userID := c.Get("userID").(string)
+	userID := c.Get("UserId").(string)
 	req.UserID = userID
 
 	medsos, err := h.serviceMedsos.Get(req)

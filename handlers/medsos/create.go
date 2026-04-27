@@ -35,6 +35,9 @@ func (h *domainHandler) Create(c echo.Context) error {
 		})
 	}
 
+	userID := c.Get("UserId").(string)
+	req.UserID = userID
+
 	// Handle file upload
 	var imageURL string
 	if req.Image != nil {
