@@ -7,18 +7,18 @@ import (
 func (r *medsosRepository) Get(req dto.MatchFeedRequest) ([]dto.MedsosResponse, error) {
 	var medsosResponses []dto.MedsosResponse
 
-	// Query: ambil semua medsos dari user yang match dengan userID
+	// Query: ambil semua medsos dari user yang matches dengan userID
 	query := `
         SELECT m.id, m.caption, m.detail_id, m.image_url, m.user_id, m.created_by
         FROM medsos m
         WHERE m.user_id IN (
             SELECT 
                 CASE 
-                    WHEN match.user1_id = ? THEN match.user2_id
-                    WHEN match.user2_id = ? THEN match.user1_id
+                    WHEN matches.user1_id = ? THEN matches.user2_id
+                    WHEN matches.user2_id = ? THEN matches.user1_id
                 END AS matched_user_id
-            FROM match
-            WHERE (match.user1_id = ? OR match.user2_id = ?)
+            FROM matches
+            WHERE (matches.user1_id = ? OR matches.user2_id = ?)
         )
     `
 
