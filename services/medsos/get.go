@@ -13,9 +13,12 @@ func (s *medsosService) Get(req dto.MedsosRequest) ([]dto.MedsosResponse, error)
 	var medsosResponses []dto.MedsosResponse
 	for _, m := range medsos {
 		medsosResponses = append(medsosResponses, dto.MedsosResponse{
-			ID:       m.ID,
-			Caption:  m.Caption,
-			ImageURL: m.ImageURL,
+			ID:        m.ID,
+			DetailID:  m.DetailID,
+			Caption:   m.Caption,
+			ImageURL:  m.ImageURL,
+			UserID:    m.UserID,
+			CreatedBy: m.CreatedBy,
 		})
 	}
 
