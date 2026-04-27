@@ -15,7 +15,7 @@ func (b *medsosRepository) GetPicture(req dto.MedsosRequest) (*dto.MedsosRespons
 	}
 
 	response := &dto.MedsosResponse{
-		ImageURL: "http://103.150.227.223/" + tr.ImageURL,
+		ImageURL: "http://103.150.227.223:2349/" + tr.ImageURL,
 	}
 
 	return response, nil

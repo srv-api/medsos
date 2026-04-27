@@ -27,7 +27,8 @@ func New() *echo.Echo {
 	medsosService := s_medsos.NewMedsosService(medsosRepo, JWT)
 	handler := h_medsos.NewMedsosHandler(medsosService)
 
-	e.GET("/pict/uploads/medsos", handler.GetPicture)
+	e.GET("/picture/*", handler.GetPicture)
+
 	medsos := e.Group("/medsos", middlewares.AuthorizeJWT(JWT))
 	{
 		medsos.POST("/create", handler.Create)

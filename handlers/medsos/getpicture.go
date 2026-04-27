@@ -1,28 +1,35 @@
 package medsos
 
 import (
-	dto "srv-api/medsos/dto"
+	"errors"
+	"srv-api/medsos/dto"
 
 	"github.com/labstack/echo/v4"
 	res "github.com/srv-api/util/s/response"
 )
 
 func (b *domainHandler) GetPicture(c echo.Context) error {
-	var req dto.MedsosRequest
+	// Dapatkan path lengkap (contoh: "uploads/medsos/1777267599319686549_504ea991-5391-4131-a975-22c4bfbc8925.png")
+	imagePath := c.Param("*")
 
-	idUint, err := res.IsNumber(c, "image_url")
-	if err != nil {
-		return res.ErrorBuilder(&res.ErrorConstant.BadRequest, err).Send(c)
+	if imagePath == "" {
+		return res.ErrorBuilder(&res.ErrorConstant.BadRequest, errors.New("image path is required")).Send(c)
 	}
 
-	req.ImageURL = idUint
+	// Format path seperti yang ada di database
+	dbPath := "/" + imagePath // menjadi "/uploads/medsos/..."
 
-	transaction, err := b.serviceMedsos.GetPicture(req)
-	if err != nil {
-		return res.ErrorBuilder(&res.ErrorConstant.NotFound, err).Send(c)
-
+	// Validasi ke database apakah path ini valid
+	req := dto.MedsosRequest{
+		ImageURL: dbPath,
 	}
 
-	return c.File(transaction.ImageURL)
+	_, err := b.serviceMedsos.GetPicture(req)
+	if err != nil {
+		return res.ErrorBuilder(&res.ErrorConstant.NotFound, errors.New("image not found in database")).Send(c)
+	}
 
+	// Serve file dari local path
+	localPath := "./" + imagePath
+	return c.File(localPath)
 }
