@@ -20,3 +20,7 @@ type MedsosResponse struct {
 	CreatedBy string `json:"created_by"`
 	ImageURL  string `json:"image_url"`
 }
+
+type MatchFeedRequest struct {
+	UserID string `json:"user_id"`
+}

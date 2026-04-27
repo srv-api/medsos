@@ -8,7 +8,7 @@ import (
 
 type DomainRepository interface {
 	Create(req dto.MedsosRequest) (dto.MedsosResponse, error)
-	Get(req dto.MedsosRequest) ([]dto.MedsosResponse, error)
+	Get(req dto.MatchFeedRequest) ([]dto.MedsosResponse, error)
 	GetPicture(req dto.MedsosRequest) (*dto.MedsosResponse, error)
 }
 

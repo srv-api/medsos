@@ -7,7 +7,7 @@ import (
 )
 
 func (h *domainHandler) Get(c echo.Context) error {
-	var req dto.MedsosRequest
+	var req dto.MatchFeedRequest
 	if err := c.Bind(&req); err != nil {
 		return echo.NewHTTPError(400, "Invalid request")
 	}
