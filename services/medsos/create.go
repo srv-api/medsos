@@ -2,11 +2,13 @@ package medsos
 
 import (
 	dto "srv-api/medsos/dto"
+
+	util "github.com/srv-api/util/s"
 )
 
 func (s *medsosService) Create(req dto.MedsosRequest) (dto.MedsosResponse, error) {
 	create := dto.MedsosRequest{
-		ID:        req.ID,
+		ID:        util.GenerateRandomString(),
 		Caption:   req.Caption,
 		UserID:    req.UserID,
 		DetailID:  req.DetailID,
