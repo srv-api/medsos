@@ -9,6 +9,7 @@ import (
 type DomainHandler interface {
 	Create(c echo.Context) error
 	Get(c echo.Context) error
+	GetPicture(c echo.Context) error
 }
 
 type domainHandler struct {
