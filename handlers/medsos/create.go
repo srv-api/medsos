@@ -38,6 +38,12 @@ func (h *domainHandler) Create(c echo.Context) error {
 	userID := c.Get("UserId").(string)
 	req.UserID = userID
 
+	detailId := c.Get("DetailId").(string)
+	req.DetailID = detailId
+
+	createdBy := c.Get("CreatedBy").(string)
+	req.CreatedBy = createdBy
+
 	// Handle file upload
 	var imageURL string
 	if req.Image != nil {
